@@ -1,6 +1,7 @@
 insulin_minimum = 0;
 insulin_maximum = 40e-5;
 step_size = 1e-5;
+end_time = 180;
 
 step_num = floor( (insulin_maximum - insulin_minimum) / step_size );
 
@@ -22,8 +23,8 @@ for i = 1 : step_num
     S0 = insulin_minimum + (i * step_size);
     [T, insulin, glucose] = sim_glucose(S0, B0, ka, ke, food_glucose, blood_glucose, glucose_consumption_rate_constant, glucose_absorbtion_rate_constant, digestion_rate_constant);
     
-    mins(i) = min(glucose);
-    maxs(i) = max(glucose);
+    mins(i(1:end_time)) = min(glucose);
+    maxs(i(1:end_time)) = max(glucose);
     
 end
     
